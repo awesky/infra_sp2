@@ -2,7 +2,15 @@ from csv import DictReader
 
 from django.conf import settings
 from django.core.management import BaseCommand
-from reviews.models import Category, Comment, Genre, GenreTitle, Review, Title, User
+from reviews.models import (
+    Category,
+    Comment,
+    Genre,
+    GenreTitle,
+    Review,
+    Title,
+    User,
+)
 
 TABLES = {
     User: "users.csv",

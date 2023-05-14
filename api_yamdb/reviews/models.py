@@ -1,5 +1,9 @@
 from django.contrib.auth.models import AbstractUser
-from django.core.validators import MaxValueValidator, MinValueValidator, RegexValidator
+from django.core.validators import (
+    MaxValueValidator,
+    MinValueValidator,
+    RegexValidator,
+)
 from django.db import models
 
 
@@ -28,9 +32,15 @@ class User(AbstractUser):
             )
         ],
     )
-    email = models.EmailField(max_length=254, unique=True, verbose_name="Почта")
-    first_name = models.CharField(blank=True, max_length=150, verbose_name="Имя")
-    last_name = models.CharField(blank=True, max_length=150, verbose_name="Фамилия")
+    email = models.EmailField(
+        max_length=254, unique=True, verbose_name="Почта"
+    )
+    first_name = models.CharField(
+        blank=True, max_length=150, verbose_name="Имя"
+    )
+    last_name = models.CharField(
+        blank=True, max_length=150, verbose_name="Фамилия"
+    )
     bio = models.TextField(blank=True, verbose_name="Биография")
 
     confirmation_code = models.CharField(
@@ -68,7 +78,9 @@ class Category(models.Model):
         default="Отсутствует",
         verbose_name="Название категории",
     )
-    slug = models.SlugField(max_length=50, unique=True, verbose_name="Slug категории")
+    slug = models.SlugField(
+        max_length=50, unique=True, verbose_name="Slug категории"
+    )
 
     class Meta:
         verbose_name = "Категория"
@@ -82,7 +94,9 @@ class Genre(models.Model):
     """Модель жанра."""
 
     name = models.CharField(max_length=256, verbose_name="Название жанра")
-    slug = models.SlugField(max_length=50, unique=True, verbose_name="Slug жанра")
+    slug = models.SlugField(
+        max_length=50, unique=True, verbose_name="Slug жанра"
+    )
 
     class Meta:
         verbose_name = "Жанр"
@@ -95,7 +109,9 @@ class Genre(models.Model):
 class Title(models.Model):
     """Модель произведения."""
 
-    name = models.CharField(max_length=256, verbose_name="Название произведения")
+    name = models.CharField(
+        max_length=256, verbose_name="Название произведения"
+    )
     year = models.PositiveSmallIntegerField(
         verbose_name="Год выпуска",
     )

@@ -79,7 +79,9 @@ def sign_up(request):
             [f"{request.data.get('email')}"],
             fail_silently=False,
         )
-        return Response("Код подтверждения обновлён", status=status.HTTP_200_OK)
+        return Response(
+            "Код подтверждения обновлён", status=status.HTTP_200_OK
+        )
     serializer.is_valid(raise_exception=True)
     serializer.save()
     user = User.objects.get(
