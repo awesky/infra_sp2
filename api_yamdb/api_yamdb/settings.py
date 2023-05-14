@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY", default="Default Value")
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -67,9 +67,9 @@ DATABASES = {
         "USER": os.getenv("POSTGRES_USER", default="postgres"),
         "PASSWORD": os.getenv("POSTGRES_PASSWORD", default=None),
         "HOST": os.getenv("DB_HOST", default=None),
-        "PORT": os.getenv("DB_PORT", default=None)
+        "PORT": os.getenv("DB_PORT", default=None),
     }
-} 
+}
 
 AUTH_USER_MODEL = "reviews.User"
 

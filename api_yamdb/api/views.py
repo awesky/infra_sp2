@@ -14,11 +14,17 @@ from api_yamdb.settings import EMAIL
 from .filters import TitleFilter
 from .mixins import CLDViewSet
 from .permissions import CGTPermissions, RCPermissions, UPermissions
-from .serializers import (CategorySerializer, CommentSerializer,
-                          GenreSerializer, ObtainTokenSerializer,
-                          ReviewSerializer, SignUpSerializer,
-                          TitleReadSerializer, TitleWriteSerializer,
-                          UserSerializer)
+from .serializers import (
+    CategorySerializer,
+    CommentSerializer,
+    GenreSerializer,
+    ObtainTokenSerializer,
+    ReviewSerializer,
+    SignUpSerializer,
+    TitleReadSerializer,
+    TitleWriteSerializer,
+    UserSerializer,
+)
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -73,8 +79,7 @@ def sign_up(request):
             [f"{request.data.get('email')}"],
             fail_silently=False,
         )
-        return Response("Код подтверждения обновлён",
-                        status=status.HTTP_200_OK)
+        return Response("Код подтверждения обновлён", status=status.HTTP_200_OK)
     serializer.is_valid(raise_exception=True)
     serializer.save()
     user = User.objects.get(
@@ -102,12 +107,11 @@ def obtain_token(request):
     confirmation_code = serializer.validated_data.get("confirmation_code")
     user = get_object_or_404(User, username=username)
     if not default_token_generator.check_token(user, confirmation_code):
-        return Response("Неверный код подтверждения",
-                        status=status.HTTP_400_BAD_REQUEST)
+        return Response(
+            "Неверный код подтверждения", status=status.HTTP_400_BAD_REQUEST
+        )
     token = AccessToken.for_user(user)
-    return Response(
-        {"token": str(token)}, status=status.HTTP_200_OK
-    )
+    return Response({"token": str(token)}, status=status.HTTP_200_OK)
 
 
 class CategorytViewSet(CLDViewSet):
